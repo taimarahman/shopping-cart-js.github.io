@@ -181,10 +181,23 @@ aside .wrapper {
 
 .btn {
     padding: 10px 40px;
-    margin: 30px 0 16px;
+    margin: 20px 0 16px;
     border: none;
     background-color: #c44f4f;
     color: #fff;
+}
+
+.promo-code .codes {
+    padding-top: 15px;
+}
+
+.code-btn {
+    border: none;
+    border-radius: 15px;
+    padding: 5px 20px;
+    background-color: #27ae60;
+    color: #fff;
+    margin: 5px;
 }
 
 .error {

@@ -34,7 +34,7 @@ let promoPrice = 0;
 let wishList = [];
 let cartItems = [];
 
-const promoCodeList = [
+let promoCodeList = [
     'reduce70',
     'dinner90',
     'package50',
@@ -95,6 +95,7 @@ async function showItems() {
         itemContainer.appendChild(productEl);
 
     });
+    showPromoCodeList(promoCodeList);
 }
 
 showItems();
@@ -286,7 +287,6 @@ function checkoutCart() {
         addBtnToCart();
     }
     // console.log(orderTotalBill,orderTotalPrice);
-
     
 }
 
@@ -406,6 +406,35 @@ function applyPromoCode() {
     return promoPrice;
 }
 
+// show available promoCodes for shortcut
+function showPromoCodeList(codeList) {
+    document.querySelector('.codes').innerHTML = '';
+    codeList.map(function(code) {
+        const codeEl = document.createElement('button');
+        codeEl.classList.add('code-btn');
+        codeBtnOnclcik(codeEl,code);
+        codeEl.innerHTML = code; 
+        document.querySelector('.codes').appendChild(codeEl);
+    })
+}
+
+// code btn onclick function
+function codeBtnOnclcik(el,code) {
+    el.onclick = function() {
+        addPromoCode(code);
+    };
+}
+
+// add promo code to the textbox and update available promo code
+function addPromoCode(code) {
+    codeList = promoCodeList.filter((value) => {
+        return value != code;
+    });
+    promoCode.value = code;
+    showPromoCodeList(codeList);
+}
+
+// Event listeners
 applyBtn.addEventListener('click', applyPromoCode);
 
 // open and close wishlist
@@ -417,10 +446,13 @@ closeBtn.addEventListener('click', () => {
     document.querySelector('.dark-back').style.display = 'none';
 });
 
+// checkout cart with added items
 checkoutBtn.addEventListener('click', checkoutCart);
 
+// close checkout cart window
 checkoutCloseBtn.addEventListener('click', () => {
     document.querySelector('.dark-back-checkout').style.display = 'none';
 });
 
+// reload program
 reloadBtn.addEventListener('click', () => window.location.reload())
