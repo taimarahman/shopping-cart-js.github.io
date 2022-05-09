@@ -103,7 +103,6 @@ showCartItems(cartItems);
 
 function decreamentQuantity(el) {
     quantity = parseInt(el.nextElementSibling.innerHTML);
-    // console.log(quantity);
     
     if(quantity) {
         quantity--;
@@ -114,9 +113,6 @@ function decreamentQuantity(el) {
     updateProductTotalPrice(el, quantity)
 }
 function increamentQuantity(el) {
-    // console.log('hi');
-    // console.log(el);
-
     quantity = el.previousElementSibling.innerHTML;
     quantity++;
     el.previousElementSibling.innerHTML = quantity;
@@ -126,15 +122,12 @@ function increamentQuantity(el) {
 
 function updateProductTotalPrice(el, quantity) {
     const price = parseFloat(el.parentNode.nextElementSibling.firstElementChild.innerHTML.slice(1));
-    // console.log(price);
 
     const productTotalEl = el.parentNode.nextElementSibling.nextElementSibling.firstElementChild;
 
     let productTotalPrice = quantity * price; 
     productTotalEl.innerHTML = `$${productTotalPrice.toFixed(2)}`;
 
-    // console.log(productTotalEl);
-    // console.log(productTotalPrice);
 
     updateOrderTotalPrice();
 
@@ -154,10 +147,8 @@ function updateOrderTotalPrice() {
             itemCount++;
         }
         totalPrice += productPrice;
-        // console.log(totalPrice);
-        // console.log(productPrice);
     })
-    // console.log(productPriceList);
+ 
     selectedItemCount.innerHTML = `Items ${itemCount}`;
     totalPriceEl.innerHTML = `$${totalPrice.toFixed(2)}`;
 
@@ -177,7 +168,6 @@ function updateBill(total, promo) {
 function updateWishList(el) {
     el.classList.toggle('liked');
     const product = fetchProductDetails(el);
-    // console.log(product);
 
     if((wishListItems.findIndex((item) => item.title == product.title)) == -1) {
         wishListItems.push(product);
@@ -191,7 +181,6 @@ function updateWishList(el) {
     else {
         removeFromWishList(product);
     }
-    // console.log(wishListItems);
     
 }
 
@@ -241,7 +230,6 @@ function updateWishBtn(product) {
 
         const title = item.children[1].firstElementChild.innerHTML;
 
-        // console.log(element);
         if(title == product.title) {
             item.lastElementChild.lastElementChild.classList.toggle('liked');
         }
@@ -255,8 +243,6 @@ function checkWishBtn(wishListItems) {
 
         const title = item.querySelector('.product-title').innerHTML;
 
-        // console.log(element);
-        // (wishListItems.findIndex((item) => item.title == product.title)
         if(wishListItems.findIndex((item) => item.title == title) > -1) {
             item.children[1].lastElementChild.classList.toggle('liked');
         }
@@ -268,75 +254,6 @@ function checkWishBtn(wishListItems) {
 function updateWishListCount(count) {
     wishCountEl.innerHTML = count;
 }
-// function updateWishList(el) {
-//     el.classList.toggle('liked');
-//     const wishedProductdetails = el.parentNode.parentNode;
-
-//     if(!wishList.includes(wishedProductdetails)) {
-//         wishList.push(wishedProductdetails);
-
-//         // update count of the wishlist
-//         wishCountEl.innerHTML = wishList.length;
-//         addToWishList(wishList)
-//     }
-//     else {
-//         removeFromWishList(wishedProductdetails);
-//     }
-//     // console.log(wishList);
-    
-// }
-
-// function removeFromWishList(item) {
-//     wishList = wishList.filter((value) => {
-//         return value != item;
-//     });
-//     wishCountEl.innerHTML = wishList.length;
-//     addToWishList(wishList);
-//     if(wishList.length == 0) {
-//         wishListContainer.innerHTML = 'No items on the list!';
-//     }
-
-// }
-
-
-
-// function addToWishList(wishList) {
-//     wishListContainer.innerHTML = '';
-//     wishList.map(function(item, index) {
-//         const listEl = document.createElement('div');
-//         listEl.classList.add('items');
-//         listEl.innerHTML = `
-//         <div class="product-details">
-//             <div class="product-img">
-//             ${item.children[0].innerHTML}
-//             </div>
-//             <div>
-//                 ${item.children[1].innerHTML}
-//             </div>
-//         </div>
-//         <button class="btn" onclick="updateWishBtn(wishList[${index}]); removeFromWishList(wishList[${index}]);">Remove</button>
-//         `;
-
-//         wishListContainer.appendChild(listEl);
-//     });    
-// }
-
-// function updateWishBtn(product) {
-//     const allItem = document.querySelectorAll('.cart-item');
-//     // console.log(allItem);
-//     console.log(product);
-
-//     allItem.forEach(item => {
-//         const element = item.firstElementChild;
-
-//         // console.log(element);
-//         if(element == product) {
-//             element.children[1].lastElementChild.classList.toggle('liked');
-//         }
-
-//     });
-
-// }
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
@@ -352,24 +269,15 @@ function checkoutCart(cartItems) {
     const allItem = document.querySelectorAll('.cart-item');
 
     allItem.forEach(item => {
-        // const element = item.;
 
-        // wishListItems.findIndex((item) => item.title == product.title
         itemQuantity = item.querySelector('.quantity').innerHTML;
-
-        // console.log(checkoutItems.find((item) => item.title == itemTitle));
 
         if(itemQuantity > 0) {
             itemTitle = item.querySelector('.product-title').innerHTML;
             itemPrice = item.querySelector('.price').innerHTML;
             itemTotalPrice = item.querySelector('.product-total-price').innerHTML;
-            // console.log(itemPrice,itemTotalPrice);
-
-
 
             addToCheckoutItems(itemTitle, itemQuantity, itemPrice, itemTotalPrice);
-            // addToCart(cartItem);
-            // console.log(cartItems);
         }
     });
 
@@ -381,7 +289,6 @@ function checkoutCart(cartItems) {
         addPaymentMethodToCart(paymentMethod);
         addBtnToCart();
     }
-    // console.log(orderTotalBill,orderTotalPrice);
     
 }
 
@@ -541,7 +448,6 @@ function fetchProductDetails(el) {
     productTotalQuantity = parentEl.querySelector('.product-total-Quantity').innerHTML;
 
     product = createProduct(productTitle, productImage, productPrice, productRating, productType, productDesription, productTotalQuantity);
-    // console.log(parentEl.querySelector('img').src);
 
     return product;
 }
