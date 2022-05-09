@@ -72,7 +72,6 @@ function updateCartBtn(el) {
 
 function addToCartItems(el) {
     const cartProduct = fetchProductDetails(el);
-    // console.log(cartProduct);
 
     if((cartItems.findIndex((item) => item.title == cartProduct.title)) == -1) {
         cartItems.push(product);
@@ -89,8 +88,6 @@ function checkAddToCartBtn(cartItems) {
 
         const title = item.querySelector('.product-title').innerHTML;
 
-        // console.log(element);
-        // (wishListItems.findIndex((item) => item.title == product.title)
         if(cartItems.findIndex((item) => item.title == title) > -1) {
             updateCartBtn(item.querySelector('.add-to-cart'));
         }
@@ -115,7 +112,6 @@ function updateWishList(el) {
     else {
         removeFromWishList(product);
     }
-    // console.log(wishListItems);
     
 }
 
@@ -163,7 +159,6 @@ function updateWishBtn(product) {
 
         const title = item.children[1].firstElementChild.innerHTML;
 
-        // console.log(element);
         if(title == product.title) {
             item.lastElementChild.lastElementChild.classList.toggle('liked');
         }
@@ -179,8 +174,6 @@ function checkWishBtn(wishListItems) {
 
         const title = item.querySelector('.product-title').innerHTML;
 
-        // console.log(element);
-        // (wishListItems.findIndex((item) => item.title == product.title)
         if(wishListItems.findIndex((item) => item.title == title) > -1) {
             item.querySelector('.wish-btn').classList.toggle('liked');
         }
@@ -203,7 +196,6 @@ function fetchProductDetails(el) {
     productTotalQuantity = parentEl.querySelector('.product-total-Quantity').innerHTML;
 
     product = createProduct(productTitle, productImage, productPrice, productRating, productType, productDesription, productTotalQuantity);
-    // console.log(parentEl.querySelector('img').src);
 
     return product;
 }
