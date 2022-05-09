@@ -177,10 +177,12 @@ function updateBill(total, promo) {
 function updateWishList(el) {
     el.classList.toggle('liked');
     const product = fetchProductDetails(el);
-    console.log(product);
+    // console.log(product);
 
     if((wishListItems.findIndex((item) => item.title == product.title)) == -1) {
         wishListItems.push(product);
+        localStorage.setItem("wishListItems", JSON.stringify(wishListItems));
+
 
         // update count of the wishlist
         updateWishListCount(wishListItems.length);
@@ -202,6 +204,8 @@ function removeFromWishList(item) {
     if(wishListItems.length == 0) {
         wishListContainer.innerHTML = 'No items on the list!';
     }
+    localStorage.setItem("wishListItems", JSON.stringify(wishListItems));
+
 }
 
 function writeToWishList(wishList) {
