@@ -20,7 +20,9 @@ h1, h2, h3, h4, h5, p {
     margin: 0;
 }
 
-section {
+/* Cart page */
+section.cart {
+    position: relative;
     width: 80%;
     margin: 80px 0;
 }
@@ -34,7 +36,7 @@ section {
     display: flex;
     justify-content: space-between;
 }
-section .container {
+section.cart .container {
     margin-left: 140px;
     margin-right: 50px;
 }
@@ -96,11 +98,11 @@ section .container {
 }
 
 .product-details small {
-    padding: 10px 0;
+    margin: 5px 0;
 }
 
 .product-details small:last-child {
-    padding: 10px 0 0;
+    margin: 10px 0 0;
 }
 
 .cart-item .product-quantity,
@@ -144,7 +146,7 @@ aside {
 }
 
 aside .wrapper {
-    padding: 0 50px;
+    padding: 0 45px;
 }
 
 .order-summery {
@@ -154,12 +156,12 @@ aside .wrapper {
 .order-summery h4 {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 10px;
+    /* padding-bottom: 10px; */
 }
 
 .order-summery .payment,
 .order-summery .promo-code {
-    margin: 30px 0 20px;
+    margin: 20px 0 20px;
 }
 
 .order-summery .promo-code {
@@ -171,7 +173,7 @@ aside .wrapper {
     border: none;
     width: 100%;
     padding: 8px 16px;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .order-summery .payment select:focus,
@@ -197,7 +199,7 @@ aside .wrapper {
     padding: 5px 20px;
     background-color: #27ae60;
     color: #fff;
-    margin: 5px;
+    margin: 3px;
 }
 
 .error {
@@ -374,5 +376,19 @@ aside .wrapper {
 }
 
 .reload-btn {
+    cursor: pointer;
     background-color: #27ae60;
+}
+
+.return-btn {
+    cursor: pointer;
+    padding: 8px 20px;
+    border: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #27ae60;
+    color: #fff;
+    position: absolute;
+    bottom: -3%;
+    left: 11%;
 }

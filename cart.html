@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <title>Shopping Cart</title>
+</head>
+<body>
+    <section class="cart">
+        <div id="container" class="container">
+            <div class="heading">
+                <h1>Shopping Cart <span id="cart-items">0 Items</span></h1>
+            </div>
+
+            <div class="div-title">
+                <h3>Product details</h3>
+                <h3>Quantity</h3>
+                <h3>Price</h3>
+                <h3>Total</h3>
+            </div>
+
+            <!-- <div class="cart-item">
+                <div class="product-details" id="product-details">
+                    <div class="product-img">
+                        <img src="images/0.jpg" alt="">
+                    </div>
+                    <div class="details">
+                        <p class="product-title">Eggs cksbcbc weciuwhdcuihu scsvc we fwev rv rv er</p>
+                        <small class="product-description">Eggs eggs</small>
+                        <small class="product-type">diary</small>
+                    </div>
+                </div>
+
+                <div class="product-quantity">
+                    <button id="quantity-minus" class="quatity-btn">
+                        <i class="fa-solid fa-minus"></i>
+                    </button>
+                    <div id="quantity" class="quantity">0</div>
+                    <button id="quantity-plus" class="quatity-btn">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+
+                <div class="product-price">
+                    <p id="price" class="price">$268.6</p>
+                </div>
+
+                <div class="product-total">
+                    <p id="product-total-price">$268.6</p>
+                </div>
+            </div> -->
+
+            
+        </div>
+        <button id="return-btn" class="return-btn">&#8592 Continue shopping</button>
+
+    </section>  
+    <aside>
+        <div class="wrapper">
+            <div class="heading">
+                <h1>Order Summery</h1>
+            </div>
+            <div class="order-summery">
+                <h4><span id="total-item">Items 0</span><span id="total-price">$0</span></h4>
+
+                <div class="payment">
+                    <p>Payment method</p>
+                    <select id="payment-options" class="payment-options">
+                        <option value="Cash on delivery">Cash on delivery</option>
+                        <option value="Bkash">Bkash</option>
+                        <option value="Payment">Paypal</option>
+                    </select>
+                </div>
+
+                <div class="promo-code">
+                    <p>Promo code</p>
+                    <input type="text" id="promo-code" placeholder="Enter code here">
+                    <div class="codes">
+                        <!-- <button class="code-btn" id="code">dinner90</button> -->
+                    </div>
+                    <button id="apply-btn" class="btn">Apply</button>
+                    <small id="error-message" class="error"></small>
+                    <h4 id="promo-applied"></h4>
+
+                </div>
+
+                <h4>Total cost <span id="total-bill">$0</span></h4>
+                <button id="checkout-btn" class="checkout-btn">Checkout</button>
+
+            </div>
+
+        </div>
+    </aside> 
+
+
+    <button id="wishlist" class="wishlist">
+        <i class="fa-solid fa-gift">
+            <span id="wishlist-count">0</span>
+        </i>
+    </button>
+    <div class="dark-back">
+        <button class="close-btn" id="close-btn">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div id="wishlist-container" class="wishlist-container">
+            <div class="items">
+                <div class="product-details">
+                    No items on the list!
+                </div>
+                    <!-- <div class="product-img">
+                        <img src="images/0.jpg" alt="">
+                    </div>
+                    <div class="details">
+                        <p class="product-title">Eggs cksbcbc weciuwhdcuihu scsvc we fwev rv rv er</p>
+                        <small class="product-description">Eggs eggs</small>
+                        <small class="product-type">diary</small>
+                    </div>
+                </div>
+                <button class="btn">Remove</button> -->
+            </div>
+        </div>
+        
+    </div>
+    <div class="dark-back-checkout">
+        <button class="close-btn" id="checkout-close-btn">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div id="checkout-container" class="checkout-container">
+            <div class="div-title">
+                <h3 class="">Product details</h3>
+                <h3 class="">Quantity</h3>
+                <h3 class="">Price</h3>
+                <h3 class="">Total</h3>
+            </div>
+            <!-- <div class="checkout-items div-title">
+                No items in the cart!
+                <p>Egg</p>
+                <p>4</p>
+                <p>$4</p>
+                <p>$16</p>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="dark-back-success">
+        <div class="show-success">
+            <i class="fa-regular fa-circle-check"></i>
+            <h2>Your order is placed successfully!</h2>
+            <button class="reload-btn btn" id="reload">Reload</button>
+        </div>
+    </div>
+
+    <script src="cartScript.js"></script>
+</body>
+</html>
