@@ -3,7 +3,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
 }
 
 .main-container {
@@ -16,14 +15,11 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    /* align-items: center; */
-    /* justify-content: center; */
 }
 
 .product {
     margin: 0 24px 60px;
     width: 16%;
-    /* padding: 0 10px; */
     text-align: center;
 }
 
@@ -52,7 +48,7 @@
     margin: 10px 0;
 }
 
-.all-products .product .product-rating i {
+.product-rating i {
     color: #f9ca24;
 }
 

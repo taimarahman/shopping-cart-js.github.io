@@ -57,7 +57,7 @@ function showCartItems(items) {
                 <p class="product-title">${item.title}</p>
                 <small class="product-description">${item.description}</small>
                 <small class="product-type">${item.type}</small>
-                <small class="product-rating">${item.rating} <i class="fa-solid fa-star"></i></small>
+                <small class="product-rating">${item.rating}</small>
 
                 <button class="wished-item" onclick="updateWishList(this)">
                     <i class="fa-solid fa-heart"></i>
@@ -68,7 +68,6 @@ function showCartItems(items) {
                 <p class="product-total-Quantity">${item.totalQuantity}</p>
             </div> 
         </div>
-
 
         <div class="product-quantity">
             <button class="quatity-btn" onclick= "decreamentQuantity(this)">
@@ -90,16 +89,16 @@ function showCartItems(items) {
         `;
 
         itemContainer.appendChild(productEl);
-
     });
-    writeToWishList(wishListItems);
-    updateWishListCount(wishListItems.length);
-    checkWishBtn(wishListItems);
+    if(wishListItems.length != 0) {
+        writeToWishList(wishListItems);
+        updateWishListCount(wishListItems.length);
+        checkWishBtn(wishListItems);
+    }
     showPromoCodeList(promoCodeList);
 }
 
 showCartItems(cartItems);
-
 
 function decreamentQuantity(el) {
     quantity = parseInt(el.nextElementSibling.innerHTML);
@@ -107,7 +106,6 @@ function decreamentQuantity(el) {
     if(quantity) {
         quantity--;
     }
-
     el.nextElementSibling.innerHTML = quantity;
 
     updateProductTotalPrice(el, quantity)
@@ -128,7 +126,6 @@ function updateProductTotalPrice(el, quantity) {
     let productTotalPrice = quantity * price; 
     productTotalEl.innerHTML = `$${productTotalPrice.toFixed(2)}`;
 
-
     updateOrderTotalPrice();
 
 }
@@ -148,7 +145,6 @@ function updateOrderTotalPrice() {
         }
         totalPrice += productPrice;
     })
- 
     selectedItemCount.innerHTML = `Items ${itemCount}`;
     totalPriceEl.innerHTML = `$${totalPrice.toFixed(2)}`;
 
@@ -173,7 +169,6 @@ function updateWishList(el) {
         wishListItems.push(product);
         localStorage.setItem("wishListItems", JSON.stringify(wishListItems));
 
-
         // update count of the wishlist
         updateWishListCount(wishListItems.length);
         writeToWishList(wishListItems);
@@ -181,7 +176,6 @@ function updateWishList(el) {
     else {
         removeFromWishList(product);
     }
-    
 }
 
 function removeFromWishList(item) {
@@ -211,55 +205,47 @@ function writeToWishList(wishList) {
                 <p class="product-title">${item.title}</p>
                 <small class="product-description">${item.description}</small>
                 <small class="product-type">${item.type}</small>
-                <small class="product-rating">${item.rating} <i class="fa-solid fa-star"></i></small>
+                <small class="product-rating">${item.rating}</small>
             </div>
         </div>
         <button class="btn" onclick="updateWishBtn(wishListItems[${index}]); removeFromWishList(wishListItems[${index}]);">Remove</button>
         `;
-
         wishListContainer.appendChild(listEl);
     }); 
 }
 
-
-
 function updateWishBtn(product) {
-    const allItem = document.querySelectorAll('.product'); //fetching all products
-
+    const allItem = document.querySelectorAll('.cart-item'); //fetching all products
     allItem.forEach(item => {
 
         const title = item.children[1].firstElementChild.innerHTML;
 
         if(title == product.title) {
-            item.lastElementChild.lastElementChild.classList.toggle('liked');
+            item.querySelector('.wished-item').classList.toggle('liked');
         }
     });
 }
 
 function checkWishBtn(wishListItems) {
-    const allItem = document.querySelectorAll('.product-details'); //fetching all products
+    const allItem = document.querySelectorAll('.cart-item'); //fetching all products
 
     allItem.forEach(item => {
-
         const title = item.querySelector('.product-title').innerHTML;
 
         if(wishListItems.findIndex((item) => item.title == title) > -1) {
-            item.children[1].lastElementChild.classList.toggle('liked');
+            item.querySelector('.wished-item').classList.toggle('liked');
         }
-
     });
-
 }
 
 function updateWishListCount(count) {
     wishCountEl.innerHTML = count;
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function checkoutCart(cartItems) {
-    // console.log();
-    checkoutItems = [];
+function checkoutCart(Items) {
     document.querySelector('.dark-back-checkout').style.display = 'block';
 
     const paymentMethod = getPaymentMethod();
@@ -269,7 +255,6 @@ function checkoutCart(cartItems) {
     const allItem = document.querySelectorAll('.cart-item');
 
     allItem.forEach(item => {
-
         itemQuantity = item.querySelector('.quantity').innerHTML;
 
         if(itemQuantity > 0) {
@@ -281,7 +266,7 @@ function checkoutCart(cartItems) {
         }
     });
 
-    if(cartItems.length > 0){
+    if(checkoutItems.length > 0){
         addToCart(checkoutItems);
         addTotalPriceToCart(orderTotalPrice);
         addPromoCodeToCart(orderPromoPrice);
@@ -377,15 +362,16 @@ function addToCheckoutItems(itemTitle, itemQuantity, itemPrice, itemTotalPrice) 
         totalPrice : itemTotalPrice
     }
     checkoutItems.push(item);
-    // console.log(cartItems);
 
     return item;
 }
 
+// Payment method
 function getPaymentMethod() {
     return paymentMethodEl.value;
 }
 
+// Promo code
 function applyPromoCode() {
 
     if(promoCode.value) {
@@ -442,7 +428,7 @@ function fetchProductDetails(el) {
     productTitle = parentEl.querySelector('.product-title').innerHTML;
     productImage = parentEl.querySelector('img').src;
     productPrice = parentEl.querySelector('.price').innerHTML.slice(1);
-    productRating = parentEl.querySelector('.product-rating').innerText;
+    productRating = parentEl.querySelector('.product-rating').innerHTML;
     productType = parentEl.querySelector('.product-type').innerHTML;
     productDesription = parentEl.querySelector('.product-description').innerHTML;
     productTotalQuantity = parentEl.querySelector('.product-total-Quantity').innerHTML;
@@ -480,11 +466,12 @@ closeBtn.addEventListener('click', () => {
 
 // checkout cart with added items
 checkoutBtn.addEventListener('click', () => {
-    checkoutCart(cartItems);    
+    checkoutCart(checkoutItems);    
 });
 
 // close checkout cart window
 checkoutCloseBtn.addEventListener('click', () => {
+    checkoutItems = [];
     document.querySelector('.dark-back-checkout').style.display = 'none';
 });
 
